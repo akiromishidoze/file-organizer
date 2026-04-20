@@ -28,14 +28,14 @@ Type=Application
 Name=File Organizer
 GenericName=File Organizer
 Comment=Auto-sort folders by file type
-Exec=$DIR/launch.sh
+Exec="$DIR/launch.sh"
 Icon=file-organizer
 Terminal=false
 Categories=Utility;FileTools;
 StartupNotify=true
 EOF
 
-chmod +x "$DIR/launch.sh"
+chmod +x "$DIR/launch.sh" "$APPS/file-organizer.desktop"
 update-desktop-database "$APPS" 2>/dev/null || true
 
 echo "Installed. Look for 'File Organizer' in your app menu."
