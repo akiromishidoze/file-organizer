@@ -2,16 +2,19 @@
 """HTTP API wrapping the file organizer — stdlib only."""
 
 import json
+import mimetypes
 import shutil
 import sys
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
 from organize import CATEGORIES, EXT_TO_CATEGORY, OTHER, category_for, unique_destination  # noqa: E402
 
 PORT = 5174
+STATIC_DIR = ROOT / "frontend" / "dist"
 
 
 def plan(source: Path) -> list[dict]:
@@ -97,7 +100,32 @@ class Handler(BaseHTTPRequestHandler):
                 self._json(500, {"error": str(e)})
             return
 
+        if not parsed.path.startswith("/api/"):
+            self._serve_static(parsed.path)
+            return
+
         self._json(404, {"error": "not found"})
+
+    def _serve_static(self, url_path: str) -> None:
+        if not STATIC_DIR.is_dir():
+            self._json(503, {"error": "frontend not built — run `npm run build` in frontend/"})
+            return
+        rel = url_path.lstrip("/") or "index.html"
+        candidate = (STATIC_DIR / rel).resolve()
+        try:
+            candidate.relative_to(STATIC_DIR)
+        except ValueError:
+            self._json(403, {"error": "forbidden"})
+            return
+        if not candidate.is_file():
+            candidate = STATIC_DIR / "index.html"
+        mime, _ = mimetypes.guess_type(str(candidate))
+        data = candidate.read_bytes()
+        self.send_response(200)
+        self.send_header("Content-Type", mime or "application/octet-stream")
+        self.send_header("Content-Length", str(len(data)))
+        self.end_headers()
+        self.wfile.write(data)
 
     def do_POST(self) -> None:
         parsed = urlparse(self.path)

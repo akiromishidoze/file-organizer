@@ -87,6 +87,25 @@ npm run preview   # serves dist/ locally for verification
 
 The backend must still be running for the built frontend to work.
 
+## 3. Desktop app (Linux) — one click, no terminal
+
+Install once:
+
+```bash
+cd "/path/to/File Organizer"
+cd frontend && npm install && npm run build && cd ..
+./install-launcher.sh
+```
+
+Then find **File Organizer** in your application menu. Clicking it starts the backend (which serves the built frontend) and opens your browser to the UI. Closing the browser tab doesn't stop it — the backend keeps running until you kill the process or reboot. To stop it: `pkill -f "backend/server.py"`.
+
+To uninstall:
+
+```bash
+rm ~/.local/share/applications/file-organizer.desktop
+rm ~/.local/share/icons/hicolor/scalable/apps/file-organizer.svg
+```
+
 ## Categories
 
 Files are sorted by extension:
