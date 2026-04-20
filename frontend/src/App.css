@@ -1,0 +1,218 @@
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: #0f172a;
+  color: #e2e8f0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.shell {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+header h1 {
+  margin: 0 0 0.25rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.sub {
+  color: #94a3b8;
+  margin: 0 0 1.5rem;
+  font-size: 0.95rem;
+}
+
+.banner {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin: 0.5rem 0 1rem;
+  font-size: 0.9rem;
+}
+
+.banner.err {
+  background: #450a0a;
+  border: 1px solid #7f1d1d;
+  color: #fecaca;
+}
+
+.banner code {
+  background: rgba(0, 0, 0, 0.35);
+  padding: 0.05rem 0.35rem;
+  border-radius: 4px;
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1 1 300px;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.controls input {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 0.55rem 0.75rem;
+  color: #e2e8f0;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.95rem;
+}
+
+.controls input:focus {
+  outline: none;
+  border-color: #6366f1;
+}
+
+.buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+button {
+  background: #334155;
+  color: #e2e8f0;
+  border: 1px solid #475569;
+  padding: 0.6rem 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: background 0.12s;
+}
+
+button:hover:not(:disabled) {
+  background: #475569;
+}
+
+button.primary {
+  background: #6366f1;
+  border-color: #6366f1;
+}
+
+button.primary:hover:not(:disabled) {
+  background: #4f46e5;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.resolved {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.resolved code {
+  background: #1e293b;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  color: #cbd5e1;
+}
+
+.chips {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.chip {
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  color: #fff;
+  font-weight: 500;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 0.9rem;
+}
+
+thead {
+  background: #0f172a;
+  color: #94a3b8;
+  text-align: left;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+th, td {
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid #334155;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: #273449;
+}
+
+.name {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  color: #e2e8f0;
+  word-break: break-all;
+}
+
+.size {
+  color: #94a3b8;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.dest {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #64748b;
+  background: #1e293b;
+  border: 1px dashed #334155;
+  border-radius: 10px;
+}
